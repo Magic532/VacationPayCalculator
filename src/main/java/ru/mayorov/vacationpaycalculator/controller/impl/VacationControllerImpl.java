@@ -1,6 +1,6 @@
 package ru.mayorov.vacationpaycalculator.controller.impl;
 
-
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 import ru.mayorov.vacationpaycalculator.controller.VacationController;
 import ru.mayorov.vacationpaycalculator.service.VacationService;
@@ -16,8 +16,8 @@ public class VacationControllerImpl implements VacationController {
     }
 
     @Override
-    public double calculate(double salary, int vacationDays) {
-        System.out.println(salary + " " + vacationDays);
-        return vacationService.calculationVacantionPay(salary, vacationDays);
+    public String calculate(double salary, int vacationDays) {
+
+        return vacationService.calculationVacationPay(salary, vacationDays);
     }
 }

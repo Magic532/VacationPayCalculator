@@ -7,7 +7,12 @@ import ru.mayorov.vacationpaycalculator.service.VacationService;
 public class VacationServiceImpl implements VacationService {
 
     @Override
-    public double calculationVacantionPay(double salary, int vacationDays) {
-        return salary/365*vacationDays;
+    public String calculationVacationPay(double salary, int vacationDays) {
+        double vacationPayBeforeTax = salary/29.3*vacationDays;
+        double vacationPayAfterTax = vacationPayBeforeTax*0.87;
+        double tax = vacationPayBeforeTax - vacationPayAfterTax;
+        return String.format("Сумма отпускных: %.2f" + "\n" +
+                "НДФЛ 13%%: " + "%.2f" + "\n" +
+                "К выплате без НДФЛ: %.2f", vacationPayBeforeTax, tax, vacationPayAfterTax);
     }
 }
